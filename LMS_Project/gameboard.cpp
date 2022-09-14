@@ -132,40 +132,31 @@ void Gameboard::mouseReleaseEvent(QMouseEvent *event)
     }
 
 }
-void Gameboard::restart(bool mode)
-{
+void Gameboard::restart(bool mode){
 
-    if(!text)
-    {
+    if(!text){
         endtext->setVisible(false);
         delete endtext;
         text=true;
     }
-    if(mode)
-    {
-
+    if(mode){
         player=1;
-        for(int i=0;i<8;i++)
-        {
+        for(int i=0;i<8;i++){
             ball[i].go(0,0,1);
             ball[i].set(150+2*(i+1)*500/18,150+2*500/18+i%2*500/6,QBrush(Qt::black));
         }
-        for(int i=0;i<8;i++)
-        {
+        for(int i=0;i<8;i++){
             ball[i+8].go(0,0,1);
             ball[i+8].set(150+2*(i+1)*500/18,150+13*500/18+i%2*500/6,QBrush(Qt::white));
         }
     }
-    else
-    {
+    else{
         player=1;
-        for(int i=0;i<8;i++)
-        {
+        for(int i=0;i<8;i++){
             ball[i].go(0,0,1);
             ball[i].set(150+2*(i+1)*500/18,150+500/9,QBrush(Qt::black));
         }
-        for(int i=0;i<8;i++)
-        {
+        for(int i=0;i<8;i++){
             ball[i+8].go(0,0,1);
             ball[i+8].set(150+2*(i+1)*500/18,150+13*500/18+500/6,QBrush(Qt::white));
         }
@@ -192,25 +183,19 @@ void Gameboard::ballmove()
     }
     black=0;
     white=0;
-    for(int i=0;i<8;i++)
-    {
-        if(!ball[i].out)
-        {
+    for(int i=0;i<8;i++){
+        if(!ball[i].out){
             black++;
         }
     }
-    for(int i=8;i<16;i++)
-    {
-        if(!ball[i].out)
-        {
+    for(int i=8;i<16;i++){
+        if(!ball[i].out){
             white++;
         }
     }
-    if(black==0)
-    {
+    if(black==0){
         ap=false;
-        if(text)
-        {
+        if(text){
             endtext=scene->addText("     white win!!\n    press restart");
             endtext->setPos(100,300);
             QFont font;
@@ -220,12 +205,9 @@ void Gameboard::ballmove()
             text=false;
         }
     }
-    else if(white==0)
-    {
-
+    else if(white==0){
         ap=false;
-        if(text)
-        {
+        if(text){
             endtext=scene->addText("     black win!!\n    press restart");
             endtext->setPos(100,300);
             QFont font;
