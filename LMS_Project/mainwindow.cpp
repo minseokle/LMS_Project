@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     board=new Gameboard(this);
     ui->mainboard->addWidget(board);
 
-    board->restart();
+    board->restart(ui->radioButton->isChecked());
 
     QTimer *timer=new QTimer;
     timer->start();
@@ -50,6 +50,6 @@ void MainWindow::ballmove()
 
 void MainWindow::on_restart_clicked()
 {
-    board->restart();
+    board->restart(ui->radioButton->isChecked());
 }
 

@@ -18,7 +18,7 @@ class Gameboard: public QGraphicsView
 
 public:
     Gameboard(QWidget *parent);
-    void restart();
+    void restart(bool mode);
     void ballmove();
     int white;
     int black;
