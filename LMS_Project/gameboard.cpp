@@ -5,6 +5,8 @@
 
 Gameboard::Gameboard(QWidget *parent) : QGraphicsView(parent)
 {
+    black=8;
+    white=8;
 
     scene=new QGraphicsScene;
     this->setScene(scene);
@@ -38,6 +40,9 @@ Gameboard::Gameboard(QWidget *parent) : QGraphicsView(parent)
         ball[i].setscene(scene);
     }
 
+    gameend=scene->addRect(100,300,600,200,QPen(Qt::black),QBrush(Qt::white));
+    gameend->setVisible(false);
+    endtext=scene->addText("     black win!!\n    press restart");
 
 }
 
@@ -129,6 +134,12 @@ void Gameboard::mouseReleaseEvent(QMouseEvent *event)
 }
 void Gameboard::restart()
 {
+    if(!text)
+    {
+        endtext->setVisible(false);
+        delete endtext;
+        text=true;
+    }
     player=1;
     for(int i=0;i<8;i++)
     {
@@ -140,6 +151,7 @@ void Gameboard::restart()
         ball[i+8].go(0,0,1);
         ball[i+8].set(150+2*(i+1)*500/18,150+13*500/18+i%2*500/6,QBrush(Qt::white));
     }
+    gameend->setVisible(false);
 }
 void Gameboard::ballmove()
 {
@@ -175,9 +187,34 @@ void Gameboard::ballmove()
             white++;
         }
     }
-    if(black==0||white==0)
+    if(black==0)
     {
         ap=false;
+        if(text)
+        {
+            endtext=scene->addText("     white win!!\n    press restart");
+            endtext->setPos(100,300);
+            QFont font;
+            font.setPointSize(50);
+            endtext->setFont(font);
+            gameend->setVisible(true);
+            text=false;
+        }
+    }
+    else if(white==0)
+    {
+
+        ap=false;
+        if(text)
+        {
+            endtext=scene->addText("     black win!!\n    press restart");
+            endtext->setPos(100,300);
+            QFont font;
+            font.setPointSize(50);
+            endtext->setFont(font);
+            gameend->setVisible(true);
+            text=false;
+        }
     }
     play=ap;
 }

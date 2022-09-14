@@ -40,6 +40,9 @@ private:
     Ball*ball;
     bool play;
     int selectball;
+    QGraphicsTextItem *endtext;
+    QGraphicsRectItem *gameend;
+    bool text;
 };
 
 #endif // GAMEBOARD_H

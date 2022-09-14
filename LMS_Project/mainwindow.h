@@ -25,5 +25,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     Gameboard *board;
+
 };
 #endif // MAINWINDOW_H

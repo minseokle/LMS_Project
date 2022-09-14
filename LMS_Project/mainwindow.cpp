@@ -32,11 +32,11 @@ void MainWindow::ballmove()
     ui->blacknum->setText(QString::number(board->black));
     if(board->white==0)
     {
-        ui->turn->setText("black win!\npress restart");
+        ui->turn->setText(" ");
     }
     else if(board->black==0)
     {
-        ui->turn->setText("white win!\npress restart");
+        ui->turn->setText(" ");
     }
     else if(board->player)
     {
